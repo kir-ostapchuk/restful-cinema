@@ -11,16 +11,16 @@ import org.springframework.web.bind.annotation.RequestMapping
 import org.springframework.web.bind.annotation.RestController
 
 @RestController
-@RequestMapping("api/v1/movies")
+@RequestMapping("/api")
 class MovieController(private val service: MovieService) {
 
-    @GetMapping
+    @GetMapping("/movies")
     fun findAll() : List<Movie> = service.findAll()
 
     @GetMapping("/{id}")
     fun findOne(@PathVariable("id") id: Long) : Movie = service.findOne(id).orElseThrow()
 
-    @PostMapping
+    @PostMapping("/movie")
     fun save(@RequestBody movie: Movie) {
         service.save(movie)
     }

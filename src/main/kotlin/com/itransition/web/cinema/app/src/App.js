@@ -35,7 +35,7 @@ class App extends Component {
   };
 
   async componentDidMount() {
-    const response = await fetch('/api/movies');
+    const response = await fetch('/api/v1/movies');
     const body = await response.json();
     this.setState({ movies: body, isLoading: false });
   }

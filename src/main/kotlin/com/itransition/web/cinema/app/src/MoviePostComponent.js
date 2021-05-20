@@ -1,7 +1,7 @@
 import React from "react";
 import API from "./API";
 
-export default class Post extends React.Component {
+export default class MoviePostComponent extends React.Component {
     state = {
         name: '',
     }

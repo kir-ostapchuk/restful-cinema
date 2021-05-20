@@ -1,10 +1,11 @@
-import React from "react";
+import React from 'react';
+import 'bootstrap/dist/css/bootstrap.min.css';
+import 'shards-ui/dist/css/shards.min.css';
 import API from "./API";
 
-export default class GetMovieById extends React.Component {
+export default class MovieDeleteComponent extends React.Component {
     state = {
         id: '',
-        movieName: ''
     }
 
     handleChange = event => {
@@ -14,9 +15,10 @@ export default class GetMovieById extends React.Component {
     handleSubmit = event => {
         event.preventDefault();
 
-        API.get(`api/v1/movies/${this.state.id}`)
+        API.delete(`api/v1/movies/${this.state.id}`)
             .then(res => {
-                this.setState({movieName: res.data.name})
+                console.log(res);
+                console.log(res.data);
             })
     }
 
@@ -28,11 +30,10 @@ export default class GetMovieById extends React.Component {
                         Movie ID:
                         <input type="text" name="id" onChange={this.handleChange} />
                     </label>
-                    <button type="submit">Get One</button>
-                    {this.state.movieName && <p>Got one: {this.state.movieName}</p>}
+                    <button type="submit">Delete</button>
                 </form>
             </div>
         )
     }
-
 }
+

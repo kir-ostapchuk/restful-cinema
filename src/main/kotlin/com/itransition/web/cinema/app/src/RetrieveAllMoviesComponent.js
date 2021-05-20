@@ -1,7 +1,7 @@
 import React from 'react';
 import API from "./API";
 
-export default class GetMovies extends React.Component {
+export default class RetrieveAllMoviesComponent extends React.Component {
     state = {
         movies: []
     }

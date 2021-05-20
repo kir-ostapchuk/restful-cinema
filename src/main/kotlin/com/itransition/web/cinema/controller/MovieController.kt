@@ -13,7 +13,7 @@ import org.springframework.web.bind.annotation.RestController
 
 @RestController
 @RequestMapping("/api/v1/movies")
-@CrossOrigin("http://localhost:3000")
+@CrossOrigin("http://localhost:3000") // TODO
 class MovieController(
     private val service: MovieService
 ) {
@@ -23,11 +23,11 @@ class MovieController(
 
     @GetMapping("/{id}")
     fun findOne(@PathVariable("id") id: Long): Movie =
-        service.findOne(id).orElseThrow()
+        service.findOne(id).orElseThrow() // TODO
 
     @PostMapping
     fun save(@RequestBody movie: Movie) {
-        service.save(movie)
+        service.save(movie) // TODO
     }
 
     @DeleteMapping("/{id}")

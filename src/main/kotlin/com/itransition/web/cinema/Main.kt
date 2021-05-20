@@ -13,7 +13,7 @@ fun main(args: Array<String>) {
     runApplication<DemoApplication>(*args)
 }
 
-@Bean
+@Bean // TODO
 fun corsConfigurer(): WebMvcConfigurer = object : WebMvcConfigurer {
     override fun addCorsMappings(registry: CorsRegistry) {
         registry.addMapping("/api/v1/movies")

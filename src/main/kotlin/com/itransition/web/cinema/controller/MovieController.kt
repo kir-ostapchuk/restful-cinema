@@ -22,7 +22,8 @@ class MovieController(
     fun findAll(): List<Movie> = service.findAll()
 
     @GetMapping("/{id}")
-    fun findOne(@PathVariable("id") id: Long): Movie = service.findOne(id).orElseThrow()
+    fun findOne(@PathVariable("id") id: Long): Movie =
+        service.findOne(id).orElseThrow()
 
     @PostMapping
     fun save(@RequestBody movie: Movie) {

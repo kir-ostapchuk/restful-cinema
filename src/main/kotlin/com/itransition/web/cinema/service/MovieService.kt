@@ -9,10 +9,16 @@ import org.springframework.stereotype.Service
 class MovieService(
     private val repository: MovieRepository
 ) {
-    fun findAll(): List<Movie> = repository.findAll().toList()
-    fun findOne(id: Long): Optional<Movie> = repository.findById(id)
-    fun save(movie: Movie): Movie = repository.save(movie)
-    fun deleteById(id: Long) = repository.deleteById(id)
 
-//    fun edit(id: Long, movie: DeleteById): DeleteById = repository.save(movie.copy(id = id))
+    fun findAll(): List<Movie> =
+        repository.findAll().toList()
+
+    fun findOne(id: Long): Optional<Movie> =
+        repository.findById(id)
+
+    fun save(movie: Movie): Movie =
+        repository.save(movie)
+
+    fun deleteById(id: Long) =
+        repository.deleteById(id)
 }

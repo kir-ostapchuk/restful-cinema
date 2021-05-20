@@ -14,7 +14,7 @@ fun main(args: Array<String>) {
 }
 
 @Bean
-fun corsConfigurer() : WebMvcConfigurer = object: WebMvcConfigurer {
+fun corsConfigurer(): WebMvcConfigurer = object : WebMvcConfigurer {
     override fun addCorsMappings(registry: CorsRegistry) {
         registry.addMapping("/api/v1/movies")
             .allowedOrigins("http://localhost:8080")

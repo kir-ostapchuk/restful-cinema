@@ -16,13 +16,13 @@ import org.springframework.web.bind.annotation.RestController
 @CrossOrigin("http://localhost:3000")
 class MovieController(
     private val service: MovieService
-    ) {
+) {
 
     @GetMapping
-    fun findAll() : List<Movie> = service.findAll()
+    fun findAll(): List<Movie> = service.findAll()
 
     @GetMapping("/{id}")
-    fun findOne(@PathVariable("id") id: Long) : Movie = service.findOne(id).orElseThrow()
+    fun findOne(@PathVariable("id") id: Long): Movie = service.findOne(id).orElseThrow()
 
     @PostMapping
     fun save(@RequestBody movie: Movie) {

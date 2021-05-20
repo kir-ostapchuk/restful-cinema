@@ -16,8 +16,9 @@ export default class Post extends React.Component {
         const movie = {
             name: this.state.name
         };
-
-        API.post(`/api/v1/movies`, { movie })
+        console.log(movie)
+        console.log(movie.name)
+        API.post(`/api/v1/movies`, { name: movie.name })
             .then(res => {
                 console.log(res);
                 console.log(res.data);

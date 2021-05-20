@@ -3,6 +3,7 @@ import DeleteById from './DeleteById';
 import API from "./API";
 import GetMovies from "./GetMovies";
 import GetMovieById from "./GetMovieById";
+import Post from "./Post";
 
 
 // for getAll
@@ -44,6 +45,7 @@ import GetMovieById from "./GetMovieById";
           <DeleteById/>
           <GetMovieById/>
           <GetMovies/>
+          <Post/>
         </>
     );
   }

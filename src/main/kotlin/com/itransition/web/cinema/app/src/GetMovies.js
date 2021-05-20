@@ -6,19 +6,26 @@ export default class GetMovies extends React.Component {
         movies: []
     }
 
-    componentDidMount() {
+    handleSubmit = event => {
+        event.preventDefault();
         API.get('/api/v1/movies')
             .then(res => {
                 const movies = res.data;
-                this.setState({ movies });
+                this.setState({movies});
             })
     }
 
     render() {
         return (
-            <ul>
-                {this.state.movies.map(movie => <li>{movie.id} - {movie.name}</li>)}
-            </ul>
+            <div>
+                <form onSubmit={this.handleSubmit}>
+                    <button type="submit">Get movies</button>
+                    <ul>
+                        {this.state.movies.map(movie => <li>{movie.id} - {movie.name}</li>)}
+                    </ul>
+                </form>
+            </div>
+
         )
     }
 }

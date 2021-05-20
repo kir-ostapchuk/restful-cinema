@@ -1,68 +1,103 @@
-// import logo from './logo.svg';
-// import './App.css';
+import React from 'react';
+import DeleteById from './DeleteById';
+import API from "./API";
+import GetMovies from "./GetMovies";
+import GetMovieById from "./GetMovieById";
+
+
+// for getAll
+
+// class App extends React.Component {
+//   constructor(props) {
+//     super(props);
+//     this.state = {
+//       isLoading: true,
+//       // name: null
+//       movies: null
+//     };
+//   }
 //
-// function App() {
-//   return (
-//     <div className="App">
-//       <header className="App-header">
-//         <img src={logo} className="App-logo" alt="logo" />
-//         <p>
-//           Edit <code>src/App.js</code> and save to reload.
-//         </p>
-//         <a
-//           className="App-link"
-//           href="https://reactjs.org"
-//           target="_blank"
-//           rel="noopener noreferrer"
-//         >
-//           Learn React
-//         </a>
-//       </header>
-//     </div>
-//   );
-// }
-//
-// export default App;
+//   render() {
+//     const {isLoading, movies} = this.state;
+//     // const {isLoading, name} = this.state;
+//     return (
+//         // <DeleteById isLoading={isLoading} name={name}/>
+//         <GetMovies isLoading={isLoading} movies={movies}/>
+//     );
+//   }
 
-import React, { Component } from 'react';
-import logo from './logo.svg';
-import './App.css';
-
-class App extends Component {
-  state = {
-    isLoading: true,
-    movies: []
-  };
-
-  async componentDidMount() {
-    const response = await fetch('/api/v1/movies');
-    const body = await response.json();
-    this.setState({ movies: body, isLoading: false });
-  }
+  class App extends React.Component {
+  // constructor(props) {
+  //   super(props);
+  //   this.state = {
+  //     isLoading: true,
+  //     // name: null
+  //     id: null
+  //   };
+  // }
 
   render() {
-    const {movies, isLoading} = this.state;
-
-    if (isLoading) {
-      return <p>Loading...</p>;
-    }
-
+    // const {isLoading, movies} = this.state;
+    // const {isLoading, name} = this.state;
     return (
-        <div className="App">
-          <header className="App-header">
-            <img src={logo} className="App-logo" alt="logo" />
-            <div className="App-intro">
-              <h2>Some List</h2>
-              {movies.map(movie =>
-                  <div key={movie.id}>
-                    {movie.id} - {movie.name}
-                  </div>
-              )}
-            </div>
-          </header>
-        </div>
+        <>
+          <DeleteById/>
+          <GetMovieById/>
+          <GetMovies/>
+        </>
     );
   }
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+  // bad code!!!!!!!!!!
+
+  // async componentDidMount() {
+  //
+  //   // let movieData = await API.get('/api/v1/movies/34');
+  //   let movieData = await API.get('/api/v1/movies/34');
+  //   // console.log(movieData)
+  //
+  //   movieData = movieData.data;
+  //
+  //   const name = `${movieData.name}`;
+  //   this.setState({
+  //     ...this.state, ...{
+  //       isLoading: false,
+  //       name
+  //     }
+  //   });
+  // }
 }
+
+
+//
+// class App extends React.Component {
+//   render() {
+//     return (
+//         <Router>
+//           <Switch>
+//             <Route path='api/v1/movies/34' exact={true} component={DeleteById}/>
+//             <Route path='api/v1/movies' exact={true} component={GetMovies}/>
+//             {/*<Route path='/clients/:id' component={ClientEdit}/>*/}
+//           </Switch>
+//         </Router>
+//     )
+//   }
+// }
 
 export default App;

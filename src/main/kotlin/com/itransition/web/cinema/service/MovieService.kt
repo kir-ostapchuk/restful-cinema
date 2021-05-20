@@ -13,5 +13,5 @@ class MovieService(private val repository: MovieRepository) {
     fun save(movie: Movie): Movie = repository.save(movie)
     fun deleteById(id: Long) = repository.deleteById(id)
 
-//    fun edit(id: Long, movie: Movie): Movie = repository.save(movie.copy(id = id))
+//    fun edit(id: Long, movie: DeleteById): DeleteById = repository.save(movie.copy(id = id))
 }

@@ -2,6 +2,7 @@ package com.itransition.web.cinema.controller
 
 import com.itransition.web.cinema.model.Movie
 import com.itransition.web.cinema.service.MovieService
+import javax.validation.Valid
 import org.springframework.web.bind.annotation.CrossOrigin
 import org.springframework.web.bind.annotation.DeleteMapping
 import org.springframework.web.bind.annotation.GetMapping
@@ -13,6 +14,7 @@ import org.springframework.web.bind.annotation.RestController
 
 @RestController
 @RequestMapping("/api/v1/movies")
+@CrossOrigin("http://localhost:3000")
 class MovieController(
     private val service: MovieService
 ) {
@@ -25,7 +27,7 @@ class MovieController(
         service.findOne(id)
 
     @PostMapping
-    fun save(@RequestBody movie: Movie) =
+    fun save(@Valid @RequestBody movie: Movie) =
         service.save(movie)
 
     @DeleteMapping("/{id}")

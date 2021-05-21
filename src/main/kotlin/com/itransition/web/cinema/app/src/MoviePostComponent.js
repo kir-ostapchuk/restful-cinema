@@ -4,6 +4,7 @@ import API from "./API";
 export default class MoviePostComponent extends React.Component {
     state = {
         name: '',
+        error: ''
     }
 
     handleChange = event => {
@@ -16,13 +17,14 @@ export default class MoviePostComponent extends React.Component {
         const movie = {
             name: this.state.name
         };
-        console.log(movie)
-        console.log(movie.name)
         API.post(`/api/v1/movies`, { name: movie.name })
             .then(res => {
                 console.log(res);
                 console.log(res.data);
             })
+            .catch((err) => {
+                this.setState( {error: err.name} )
+            });
     }
 
     render() {
@@ -34,6 +36,7 @@ export default class MoviePostComponent extends React.Component {
                         <input type="text" name="name" onChange={this.handleChange} />
                     </label>
                     <button type="submit">Add</button>
+                    {this.state.error && <p>Exception - {this.state.error}</p>}
                 </form>
             </div>
         )

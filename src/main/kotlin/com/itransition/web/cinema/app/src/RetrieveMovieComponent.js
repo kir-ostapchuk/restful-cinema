@@ -4,7 +4,8 @@ import API from "./API";
 export default class RetrieveMovieComponent extends React.Component {
     state = {
         id: '',
-        movieName: ''
+        movieName: '',
+        error: ''
     }
 
     handleChange = event => {
@@ -18,6 +19,9 @@ export default class RetrieveMovieComponent extends React.Component {
             .then(res => {
                 this.setState({movieName: res.data.name})
             })
+            .catch((err) => {
+                this.setState({error: err.name})
+            });
     }
 
     render() {
@@ -30,6 +34,7 @@ export default class RetrieveMovieComponent extends React.Component {
                     </label>
                     <button type="submit">Get One</button>
                     {this.state.movieName && <p>Got one: {this.state.movieName}</p>}
+                    {this.state.error && <p>Exception - {this.state.error}</p>}
                 </form>
             </div>
         )

@@ -10,7 +10,7 @@ class MyConfiguration {
     @Bean
     fun corsConfigurer(): WebMvcConfigurer = object : WebMvcConfigurer {
         override fun addCorsMappings(registry: CorsRegistry) {
-            registry.addMapping("/api/v1/movies")
+            registry.addMapping("/api/v1/movies/")
                 .allowedOrigins("http://localhost:3000")
         }
     }

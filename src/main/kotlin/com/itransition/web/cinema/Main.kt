@@ -13,12 +13,12 @@ fun main(args: Array<String>) {
     runApplication<DemoApplication>(*args)
 }
 
-@Bean // TODO
-fun corsConfigurer(): WebMvcConfigurer = object : WebMvcConfigurer {
-    override fun addCorsMappings(registry: CorsRegistry) {
-        registry.addMapping("/api/v1/movies")
-            .allowedOrigins("http://localhost:8080")
-    }
-}
+//@Bean // TODO
+//fun corsConfigurer(): WebMvcConfigurer = object : WebMvcConfigurer {
+//    override fun addCorsMappings(registry: CorsRegistry) {
+//        registry.addMapping("/api/v1/movies")
+//            .allowedOrigins("http://localhost:8080")
+//    }
+//}
 
 

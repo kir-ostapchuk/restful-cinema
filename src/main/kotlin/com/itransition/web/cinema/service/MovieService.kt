@@ -13,8 +13,8 @@ class MovieService(
     fun findAll(): List<Movie> =
         repository.findAll().toList()
 
-    fun findOne(id: Long): Optional<Movie> =
-        repository.findById(id) // TODO
+    fun findOne(id: Long): Movie =
+        repository.findById(id).orElseThrow()
 
     fun save(movie: Movie): Movie =
         repository.save(movie)

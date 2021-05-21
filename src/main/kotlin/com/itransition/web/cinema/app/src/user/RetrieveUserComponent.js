@@ -1,10 +1,10 @@
 import React from "react";
-import API from "./API";
+import API from "../API";
 
-export default class RetrieveMovieComponent extends React.Component {
+export default class RetrieveUserComponent extends React.Component {
     state = {
         id: '',
-        movieName: '',
+        login: '',
         error: ''
     }
 
@@ -15,7 +15,7 @@ export default class RetrieveMovieComponent extends React.Component {
     handleSubmit = event => {
         event.preventDefault();
 
-        API.get(`api/v1/movies/${this.state.id}`)
+        API.get(`api/v1/users/${this.state.id}`)
             .then(res => {
                 this.setState({movieName: res.data.name})
             })

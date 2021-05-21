@@ -1,7 +1,7 @@
 import React from 'react';
 import 'bootstrap/dist/css/bootstrap.min.css';
 import 'shards-ui/dist/css/shards.min.css';
-import API from "./API";
+import API from "../API";
 
 export default class MovieDeleteComponent extends React.Component {
     state = {

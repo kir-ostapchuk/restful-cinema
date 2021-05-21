@@ -13,7 +13,6 @@ import org.springframework.web.bind.annotation.RestController
 
 @RestController
 @RequestMapping("/api/v1/movies")
-@CrossOrigin("http://localhost:3000")
 class MovieController(
     private val service: MovieService
 ) {

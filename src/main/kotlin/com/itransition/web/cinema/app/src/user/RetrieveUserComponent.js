@@ -3,19 +3,19 @@ import API from "../API";
 
 export default class RetrieveUserComponent extends React.Component {
     state = {
-        id: '',
         login: '',
+        firstName: '',
         error: ''
     }
 
     handleChange = event => {
-        this.setState({ id: event.target.value });
+        this.setState({ login: event.target.value });
     }
 
     handleSubmit = event => {
         event.preventDefault();
 
-        API.get(`api/v1/users/${this.state.id}`)
+        API.get(`api/v1/users/${this.state.login}`)
             .then(res => {
                 this.setState({movieName: res.data.name})
             })
@@ -29,8 +29,8 @@ export default class RetrieveUserComponent extends React.Component {
             <div>
                 <form onSubmit={this.handleSubmit}>
                     <label>
-                        Movie ID:
-                        <input type="text" name="id" onChange={this.handleChange} />
+                        Login:
+                        <input type="text" name="login" onChange={this.handleChange} />
                     </label>
                     <button type="submit">Get One</button>
                     {this.state.movieName && <p>Got one: {this.state.movieName}</p>}

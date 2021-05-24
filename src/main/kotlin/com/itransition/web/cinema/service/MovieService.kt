@@ -6,7 +6,9 @@ import com.itransition.web.cinema.repository.MovieRepository
 import org.springframework.stereotype.Service
 
 @Service
-class MovieService(private val repository: MovieRepository) {
+class MovieService(
+    private val repository: MovieRepository
+) {
 
     fun findAll(): List<Movie> =
         repository.findAll().toList()

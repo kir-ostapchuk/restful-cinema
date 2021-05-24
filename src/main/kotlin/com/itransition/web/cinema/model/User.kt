@@ -1,44 +1,28 @@
+
 package com.itransition.web.cinema.model
 
-import java.util.Date
-import javax.persistence.Column
 import javax.persistence.Entity
-import javax.persistence.FetchType
-import javax.persistence.JoinColumn
-import javax.persistence.JoinTable
-import javax.persistence.ManyToMany
+import javax.persistence.GeneratedValue
+import javax.persistence.GenerationType
+import javax.persistence.Id
 import javax.persistence.Table
+import javax.validation.constraints.NotBlank
 
 @Entity
-@Table(name = "users")
+@Table(name = "USERS")
 class User(
 
-    @Column(name = "username")
-    var username: String,
+    @Id
+    @GeneratedValue(strategy = GenerationType.IDENTITY)
+    var id: Long? = null,
 
-    @Column(name = "firstName")
-    var firstName: String,
+    @field:NotBlank(message = "Login is mandatory")
+    var login: String? = "",
 
-    @Column(name = "lastName")
-    var lastName: String,
+    @field:NotBlank(message = "Password is mandatory")
+    var password: String? = "",
 
-    @Column(name = "email")
-    var email: String,
+    var firstName: String? = "",
 
-    @Column(name = "password")
-    var password: String,
-
-    @ManyToMany(fetch = FetchType.EAGER) // TODO: what's the difference between fetching types??
-    @JoinTable(
-        name = "user_roles",
-        joinColumns = [JoinColumn(name = "user_id", referencedColumnName = "id")],
-        inverseJoinColumns = [JoinColumn(name = "role_id", referencedColumnName = "id")]
-    )
-    val roles: List<Role>,
-
-
-    id: Long,
-    created: Date,
-    updated: Date,
-    status: Status
-) : BaseEntity(id, created, updated, status)
+    var age: Int? = 0
+)

@@ -7,14 +7,22 @@ export default class UserPostComponent extends React.Component {
         password: '',
         firstName: '',
         age: '',
-
         error: ''
     }
 
-    handleChange = event => {
+    onChangeLogin = event => {
         this.setState({login: event.target.value});
+    }
+
+    onChangePassword = event => {
         this.setState({password: event.target.value});
+    }
+
+    onChangeFirstName = event => {
         this.setState({firstName: event.target.value});
+    }
+
+    onChangeAge = event => {
         this.setState({age: event.target.value});
     }
 
@@ -27,6 +35,7 @@ export default class UserPostComponent extends React.Component {
             firstName: this.state.firstName,
             age: this.state.age
         };
+
         API.post(`/api/v1/users`, {
             login: user.login,
             password: user.password,
@@ -48,15 +57,15 @@ export default class UserPostComponent extends React.Component {
                 <form onSubmit={this.handleSubmit}>
                     <label>
                         Login:
-                        <input type="text" name="login" onChange={this.handleChange}/>
+                        <input type="text" name="login" onChange={this.onChangeLogin}/>
                         Password:
-                        <input type="password" name="name" onChange={this.handleChange}/>
+                        <input type="password" name="name" onChange={this.onChangePassword}/>
                         First name:
-                        <input type="text" name="firstName" onChange={this.handleChange}/>
+                        <input type="text" name="firstName" onChange={this.onChangeFirstName}/>
                         Age:
-                        <input type="number" name="firstName" onChange={this.handleChange}/>
+                        <input type="number" name="firstName" onChange={this.onChangeAge}/>
                     </label>
-                    <button type="submit">Submit</button>
+                    <button type="submit">Create user</button>
                     {this.state.error && <p>Exception - {this.state.error}</p>}
                 </form>
             </div>

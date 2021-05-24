@@ -5,17 +5,17 @@ import API from "../API";
 
 export default class UserDeleteComponent extends React.Component {
     state = {
-        login: ''
+        id: ''
     }
 
     handleChange = event => {
-        this.setState({ login: event.target.value });
+        this.setState({ id: event.target.value });
     }
 
     handleSubmit = event => {
         event.preventDefault();
 
-        API.delete(`api/v1/users/${this.state.login}`)
+        API.delete(`api/v1/users/${this.state.id}`)
             .then(res => {
                 console.log(res);
                 console.log(res.data);
@@ -27,8 +27,8 @@ export default class UserDeleteComponent extends React.Component {
             <div>
                 <form onSubmit={this.handleSubmit}>
                     <label>
-                        Login:
-                        <input type="text" name="login" onChange={this.handleChange} />
+                        Id:
+                        <input type="text" name="id" onChange={this.handleChange} />
                     </label>
                     <button type="submit">Delete</button>
                 </form>

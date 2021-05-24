@@ -1,8 +1,6 @@
 package com.itransition.web.cinema.controller
 
-import com.itransition.web.cinema.model.Movie
 import com.itransition.web.cinema.model.User
-import com.itransition.web.cinema.service.MovieService
 import com.itransition.web.cinema.service.UserService
 import javax.validation.Valid
 import org.springframework.web.bind.annotation.CrossOrigin

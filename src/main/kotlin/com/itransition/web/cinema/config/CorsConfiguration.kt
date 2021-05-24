@@ -1,4 +1,4 @@
-package com.itransition.web.cinema.configuration
+package com.itransition.web.cinema.config
 
 import org.springframework.context.annotation.Bean
 import org.springframework.context.annotation.Configuration

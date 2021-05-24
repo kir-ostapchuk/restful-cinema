@@ -1,4 +1,4 @@
-package com.itransition.web.cinema.controller
+package com.itransition.web.cinema.rest
 
 import com.itransition.web.cinema.model.User
 import com.itransition.web.cinema.service.UserService

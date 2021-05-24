@@ -9,7 +9,7 @@ export default class RetrieveMovieComponent extends React.Component {
     }
 
     handleChange = event => {
-        this.setState({ id: event.target.value });
+        this.setState({id: event.target.value});
     }
 
     handleSubmit = event => {
@@ -30,7 +30,7 @@ export default class RetrieveMovieComponent extends React.Component {
                 <form onSubmit={this.handleSubmit}>
                     <label>
                         Movie ID:
-                        <input type="text" name="id" onChange={this.handleChange} />
+                        <input type="text" name="id" onChange={this.handleChange}/>
                     </label>
                     <button type="submit">Get One</button>
                     {this.state.movieName && <p>Got one: {this.state.movieName}</p>}

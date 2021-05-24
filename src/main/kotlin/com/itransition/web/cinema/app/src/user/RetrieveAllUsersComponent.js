@@ -21,7 +21,8 @@ export default class RetrieveAllUsersComponent extends React.Component {
                 <form onSubmit={this.handleSubmit}>
                     <button type="submit">Get users</button>
                     <ul>
-                        {this.state.users.map(user => <li>{user.id} - {user.login} - {user.password} - {user.firstName} - {user.age}</li>)}
+                        {this.state.users.map(user =>
+                            <li>{user.id} - {user.login} - {user.password} - {user.firstName} - {user.age}</li>)}
                     </ul>
                 </form>
             </div>

@@ -12,19 +12,28 @@ import org.springframework.web.context.request.WebRequest
 class GlobalExceptionHandler {
 
     @ExceptionHandler(ResourceNotFoundException::class)
-    fun handleResourceNotFoundException(exception: ResourceNotFoundException, request: WebRequest) : ResponseEntity<Any> {
+    fun handleResourceNotFoundException(
+        exception: ResourceNotFoundException,
+        request: WebRequest
+    ): ResponseEntity<Any> {
         val errorDetails = ErrorDetails(Date(), exception.message.toString(), request.getDescription(false))
         return ResponseEntity(errorDetails, HttpStatus.NOT_FOUND)
     }
 
     @ExceptionHandler(BindException::class)
-    fun handleMethodArgumentNotValidException(exception: BindException, request: WebRequest) : ResponseEntity<Any> {
+    fun handleMethodArgumentNotValidException(
+        exception: BindException,
+        request: WebRequest
+    ): ResponseEntity<Any> {
         val errorDetails = ErrorDetails(Date(), exception.message, request.getDescription(false))
         return ResponseEntity(errorDetails, HttpStatus.BAD_REQUEST)
     }
 
     @ExceptionHandler(Exception::class)
-    fun handleGlobalException(exception: Exception, request: WebRequest) : ResponseEntity<Any> {
+    fun handleGlobalException(
+        exception: Exception,
+        request: WebRequest
+    ): ResponseEntity<Any> {
         val errorDetails = ErrorDetails(Date(), exception.message.toString(), request.getDescription(false))
         return ResponseEntity(errorDetails, HttpStatus.NOT_FOUND)
     }

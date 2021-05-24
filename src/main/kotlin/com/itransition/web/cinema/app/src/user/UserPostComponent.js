@@ -37,18 +37,19 @@ export default class UserPostComponent extends React.Component {
         };
 
         API.post(`/api/v1/users`, {
-            login: user.login,
-            password: user.password,
-            firstName: user.firstName,
-            age: user.age}
+                login: user.login,
+                password: user.password,
+                firstName: user.firstName,
+                age: user.age
+            }
         )
-        .then(res => {
-            console.log(res);
-            console.log(res.data);
-        })
-        .catch((err) => {
-            this.setState({error: err.name})
-        });
+            .then(res => {
+                console.log(res);
+                console.log(res.data);
+            })
+            .catch((err) => {
+                this.setState({error: err.name})
+            });
     }
 
     render() {

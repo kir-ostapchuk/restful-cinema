@@ -17,12 +17,12 @@ import org.springframework.test.web.servlet.result.MockMvcResultMatchers.status
 import org.springframework.test.web.servlet.setup.MockMvcBuilders.webAppContextSetup
 import org.springframework.web.context.WebApplicationContext
 
-@SpringBootTest
+@SpringBootTest // TODO(WebmvcTest)
 @TestMethodOrder(
     MethodOrderer.OrderAnnotation::class)
 class MovieControllerTests {
 
-    private val baseUrl = "http://localhost:8080/api/v1/movies"
+    private val baseUrl = "http://localhost:8080/api/v1/movies" // TODO base url delte
     private val jsonContentType = MediaType(MediaType.APPLICATION_JSON.type, MediaType.APPLICATION_JSON.subtype)
     private lateinit var mockMvc: MockMvc
 
@@ -47,6 +47,13 @@ class MovieControllerTests {
     @Test
     @Order(2)
     fun `2 - Add first movie`() {
+        // TODO(Replace crazy code in:
+        //  1. remove order
+        //  2. use test db
+        //  3. delete port
+        //  4. add comments
+        //  5. remove string-json 6. add comparing json with
+        //  )
         val passedJsonString = """
             {
                 "name": "Independent v 3.0"

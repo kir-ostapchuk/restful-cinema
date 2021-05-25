@@ -24,6 +24,13 @@ class MovieServiceTest {
 
     @Test
     fun `Finding not exist movie should throw ResourceNotFoundException`() {
+        // TODO(Rename method name)
+
+        //given
+
+        //when
+
+        //verify
         Mockito.`when`(movieService.findOne(100000000)).thenThrow(ResourceNotFoundException::class.java)
 
         Assertions.assertThrows(ResourceNotFoundException::class.java) { movieService.findOne(100000000) }

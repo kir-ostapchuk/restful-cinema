@@ -1,5 +1,6 @@
 package com.itransition.web.cinema.model
 
+import javax.persistence.Column
 import javax.persistence.Entity
 import javax.persistence.GeneratedValue
 import javax.persistence.GenerationType
@@ -13,8 +14,8 @@ class Movie(
 
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
-    var id: Long? = null,
+    private val id: Long? = null,
 
     @field:NotBlank(message = "Name is mandatory")
-    var name: String? = ""
+    private val name: String? = ""
 )

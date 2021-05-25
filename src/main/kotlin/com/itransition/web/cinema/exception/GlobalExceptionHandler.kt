@@ -16,7 +16,8 @@ class GlobalExceptionHandler {
         exception: ResourceNotFoundException,
         request: WebRequest
     ): ResponseEntity<Any> {
-        val errorDetails = ErrorDetails(Date(), exception.message.toString(), request.getDescription(false))
+        val errorDetails =
+            ErrorDetails(Date(), exception.message.toString(), request.getDescription(false))
         return ResponseEntity(errorDetails, HttpStatus.NOT_FOUND)
     }
 
@@ -25,7 +26,8 @@ class GlobalExceptionHandler {
         exception: BindException,
         request: WebRequest
     ): ResponseEntity<Any> {
-        val errorDetails = ErrorDetails(Date(), exception.message, request.getDescription(false))
+        val errorDetails =
+            ErrorDetails(Date(), exception.message, request.getDescription(false))
         return ResponseEntity(errorDetails, HttpStatus.BAD_REQUEST)
     }
 
@@ -34,7 +36,8 @@ class GlobalExceptionHandler {
         exception: Exception,
         request: WebRequest
     ): ResponseEntity<Any> {
-        val errorDetails = ErrorDetails(Date(), exception.message.toString(), request.getDescription(false))
+        val errorDetails =
+            ErrorDetails(Date(), exception.message.toString(), request.getDescription(false))
         return ResponseEntity(errorDetails, HttpStatus.NOT_FOUND)
     }
 }

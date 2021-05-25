@@ -12,6 +12,8 @@ class CorsConfiguration {
         override fun addCorsMappings(registry: CorsRegistry) {
             registry.addMapping("/api/v1/users/")
                 .allowedOrigins("http://localhost:3000")
+            registry.addMapping("/api/v1/movies/")
+                .allowedOrigins("http://localhost:3000")
         }
     }
 }

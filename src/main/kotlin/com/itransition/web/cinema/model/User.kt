@@ -14,15 +14,15 @@ class User(
 
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
-    var id: Long? = null,
+    private val id: Long? = null,
 
     @field:NotBlank(message = "Login is mandatory")
-    var login: String? = "",
+    private val login: String? = "",
 
     @field:NotBlank(message = "Password is mandatory")
-    var password: String? = "",
+    private val password: String? = "",
 
-    var firstName: String? = "",
+    private val firstName: String? = "",
 
-    var age: Int? = 0
+    private val age: Int? = 0
 )

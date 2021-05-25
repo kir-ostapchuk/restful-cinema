@@ -32,6 +32,7 @@ dependencies {
     runtimeOnly("com.h2database:h2")
     testImplementation("org.springframework.boot:spring-boot-starter-test")
     testImplementation("io.rest-assured:kotlin-extensions:4.4.0")
+    testImplementation("org.mockito:mockito-core:3.7.0")
 }
 
 tasks.withType<KotlinCompile> {

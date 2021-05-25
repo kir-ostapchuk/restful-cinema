@@ -1,3 +1,3 @@
 package com.itransition.web.cinema.exception
 
-class ResourceNotFoundException(message: String) : Exception(message)
+class ResourceNotFoundException(message: String) : RuntimeException(message)

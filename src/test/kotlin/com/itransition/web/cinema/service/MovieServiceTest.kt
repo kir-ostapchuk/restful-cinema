@@ -20,26 +20,26 @@ class MovieServiceTest {
     @MockBean
     private lateinit var movieService: MovieService
 
-    private val movie = Movie(1, "qwerty")
-
     @Test
-    fun `Finding not exist movie should throw ResourceNotFoundException`() {
-        // TODO(Rename method name)
+    fun `Should throw ResourceNotFoundException when finding by id`() {
 
-        //given
-
-        //when
-
-        //verify
+        // When
         Mockito.`when`(movieService.findOne(100000000)).thenThrow(ResourceNotFoundException::class.java)
 
+        // Verify
         Assertions.assertThrows(ResourceNotFoundException::class.java) { movieService.findOne(100000000) }
     }
 
     @Test
-    fun `Finding exist movie`() {
+    fun `Should find movie when finding by id`() {
+
+        //Given
+        val movie = Movie(1, "qwerty")
+
+        //When
         Mockito.`when`(movieService.findOne(1)).thenReturn(movie)
 
+        // Verify
         assert(movie == movieService.findOne(1))
     }
 }

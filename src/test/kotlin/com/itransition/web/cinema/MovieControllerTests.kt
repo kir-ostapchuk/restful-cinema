@@ -1,121 +1,112 @@
 package com.itransition.web.cinema
 
-import org.junit.jupiter.api.BeforeEach
-import org.junit.jupiter.api.MethodOrderer
-import org.junit.jupiter.api.Order
+import com.itransition.web.cinema.model.Movie
+import com.itransition.web.cinema.service.MovieService
 import org.junit.jupiter.api.Test
-import org.junit.jupiter.api.TestMethodOrder
+import org.mockito.Mockito
 import org.springframework.beans.factory.annotation.Autowired
+import org.springframework.boot.test.autoconfigure.web.servlet.AutoConfigureMockMvc
 import org.springframework.boot.test.context.SpringBootTest
-import org.springframework.http.MediaType
+import org.springframework.boot.test.mock.mockito.MockBean
 import org.springframework.test.web.servlet.MockMvc
 import org.springframework.test.web.servlet.request.MockMvcRequestBuilders.delete
 import org.springframework.test.web.servlet.request.MockMvcRequestBuilders.get
 import org.springframework.test.web.servlet.request.MockMvcRequestBuilders.post
 import org.springframework.test.web.servlet.result.MockMvcResultMatchers.content
+import org.springframework.test.web.servlet.result.MockMvcResultMatchers.jsonPath
 import org.springframework.test.web.servlet.result.MockMvcResultMatchers.status
-import org.springframework.test.web.servlet.setup.MockMvcBuilders.webAppContextSetup
-import org.springframework.web.context.WebApplicationContext
 
-@SpringBootTest // TODO(WebmvcTest)
-@TestMethodOrder(
-    MethodOrderer.OrderAnnotation::class)
+@SpringBootTest
+@AutoConfigureMockMvc
 class MovieControllerTests {
 
-    private val baseUrl = "http://localhost:8080/api/v1/movies" // TODO base url delte
-    private val jsonContentType = MediaType(MediaType.APPLICATION_JSON.type, MediaType.APPLICATION_JSON.subtype)
-    private lateinit var mockMvc: MockMvc
+    // TODO(
+    //  Replace crazy code:
+    //  4. add comments
+    //  5. remove string-json
+    //  6. add comparing json with
+    //  )
 
     @Autowired
-    private lateinit var webAppContext: WebApplicationContext
+    private lateinit var mockMvc: MockMvc
 
-    @BeforeEach
-    fun before() {
-        mockMvc = webAppContextSetup(webAppContext).build();
-    }
+    @MockBean
+    private lateinit var movieService: MovieService
 
     @Test
-    @Order(1)
-    fun `1 - Get empty list of movies`() {
-        val request = get(baseUrl).contentType(jsonContentType)
+    fun `Should return empty list`() {
 
-        mockMvc.perform(request)
+        // Verify
+        mockMvc.perform(get("/api/v1/movies"))
             .andExpect(status().is2xxSuccessful)
-            .andExpect(content().json("[]", true))
+            .andExpect(content().json("[]", true)) // TODO(remove .json method usage)
     }
 
+//    @Test
+//    fun `Should add movie`() {
+//
+//        //Given
+//        val movie = Movie(1, "Independent")
+//        val jsonBody = """
+//            {
+//                "name": "Independent"
+//            }
+//        """.trimIndent()
+//
+//        //When
+//        Mockito.`when`(movieService.save(movie)).thenReturn(movie)
+//
+//        // Verify
+//        mockMvc.perform(post("/api/v1/movies").content(jsonBody))
+//            .andExpect(status().is2xxSuccessful)
+//            .andExpect(jsonPath("$.id").value(1))
+//            .andExpect(jsonPath("$.name").value("Independent"))
+//    }
+
     @Test
-    @Order(2)
-    fun `2 - Add first movie`() {
-        // TODO(Replace crazy code in:
-        //  1. remove order
-        //  2. use test db
-        //  3. delete port
-        //  4. add comments
-        //  5. remove string-json 6. add comparing json with
-        //  )
-        val passedJsonString = """
-            {
-                "name": "Independent v 3.0"
-            }
-        """.trimIndent()
+    fun `Should return movie`() {
 
-        val request = post(baseUrl).contentType(jsonContentType).content(passedJsonString)
+        //Given
+        val movie = Movie(1, "Independent")
 
-        val resultJsonString = """
-            {
-                "id": 1,
-                "name": "Independent v 3.0"
-            }
-        """.trimIndent()
+        //When
+        Mockito.`when`(movieService.findOne(1)).thenReturn(movie)
 
-        mockMvc.perform(request)
+        //Verify
+        mockMvc.perform(get("/api/v1/movies/1"))
             .andExpect(status().is2xxSuccessful)
-            .andExpect(content().json(resultJsonString, true))
+            .andExpect(content().contentType("application/json"))
+            .andExpect(jsonPath("$.id").value(1))
+            .andExpect(jsonPath("$.name").value("Independent"))
     }
 
     @Test
-    @Order(3)
-    fun `3 - Get first movie`() {
-        val request = get("$baseUrl/1").contentType(jsonContentType)
+    fun `Should return list of movies`() {
 
-        val resultJsonString = """
-            {
-                "id": 1,
-                "name": "Independent v 3.0"
-            }
-        """.trimIndent()
+        //Given
+        val movie1 = Movie(1, "Independent")
+        val movie2 = Movie(2, "BelarusRWR")
+        val movies = listOf(movie1, movie2)
 
-        mockMvc.perform(request)
+        //When
+        Mockito.`when`(movieService.findAll()).thenReturn(movies)
+
+        //Verify
+        mockMvc.perform(get("/api/v1/movies"))
             .andExpect(status().is2xxSuccessful)
-            .andExpect(content().json(resultJsonString, true))
+            .andExpect(content().contentType("application/json"))
+            .andExpect(jsonPath("$[0].id").value(1))
+            .andExpect(jsonPath("$[0].name").value("Independent"))
+            .andExpect(jsonPath("$[1].id").value(2))
+            .andExpect(jsonPath("$[1].name").value("BelarusRWR"))
     }
 
     @Test
-    @Order(4)
-    fun `4 - Get list of movies, with one movie`() {
-        val request = get(baseUrl).contentType(jsonContentType)
+    fun `Should delete movie`() {
 
-        val resultJsonString = """
-            [
-                {
-                    "id": 1,
-                    "name": "Independent v 3.0"
-                }
-            ]
-        """.trimIndent()
-
-        mockMvc.perform(request)
+        // Verify
+        mockMvc.perform(delete("/api/v1/movies/1"))
             .andExpect(status().isOk)
-            .andExpect(content().json(resultJsonString, true))
-    }
-
-    @Test
-    @Order(5)
-    fun `5 - Delete first movie`() {
-        val request = delete("$baseUrl/1").contentType(jsonContentType)
-
-        mockMvc.perform(request).andExpect(status().isOk)
     }
 
 }

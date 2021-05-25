@@ -14,8 +14,8 @@ class Movie(
 
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
-    private val id: Long? = null,
+    var id: Long? = null,
 
     @field:NotBlank(message = "Name is mandatory")
-    private val name: String? = ""
+    var name: String? = ""
 )

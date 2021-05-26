@@ -22,6 +22,14 @@ import org.springframework.web.context.WebApplicationContext
     MethodOrderer.OrderAnnotation::class)
 class UserControllerTests {
 
+    // TODO(
+    //  Replace crazy code:
+    //  4. add comments
+    //  5. remove string-json
+    //  6. add comparing json with
+    //  7. test all cases (non-valid name, resource does not exist)
+    //  )
+
     private val baseUrl = "http://localhost:8080/api/v1/users"
     private val jsonContentType = MediaType(MediaType.APPLICATION_JSON.type, MediaType.APPLICATION_JSON.subtype)
     private lateinit var mockMvc: MockMvc

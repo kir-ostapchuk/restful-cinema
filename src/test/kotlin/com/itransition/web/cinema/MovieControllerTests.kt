@@ -22,14 +22,6 @@ import org.springframework.test.web.servlet.result.MockMvcResultMatchers.status
 @AutoConfigureMockMvc
 class MovieControllerTests {
 
-    // TODO(
-    //  Replace crazy code:
-    //  4. add comments
-    //  5. remove string-json
-    //  6. add comparing json with
-    //  7. test all cases (non-valid name, resource does not exist)
-    //  )
-
     @Autowired
     private lateinit var mockMvc: MockMvc
 
@@ -37,18 +29,9 @@ class MovieControllerTests {
     private lateinit var movieService: MovieService
 
     @Test
-    fun `Should return empty list`() {
-
-        // Verify
-        mockMvc.perform(get("/api/v1/movies"))
-            .andExpect(status().is2xxSuccessful)
-            .andExpect(content().json("[]", true)) // TODO(remove .json method usage)
-    }
-
-    @Test
     fun `Should add movie`() {
 
-        //Given
+        // Given
         val movie = Movie(1, "Independent")
         val jsonBody = """
             {
@@ -56,49 +39,79 @@ class MovieControllerTests {
             }
         """.trimIndent()
 
-        //When
-        Mockito.doReturn(movie).`when`(movieService).save(any())
+        // When
+        Mockito.`when`(movieService.save(any())).thenReturn(movie)
 
         // Verify
-        mockMvc.perform(post("/api/v1/movies")
-            .content(jsonBody)
-            .contentType(MediaType.APPLICATION_JSON))
+        mockMvc.perform(
+            post("/api/v1/movies")
+                .content(jsonBody)
+                .contentType(MediaType.APPLICATION_JSON)
+        )
             .andExpect(status().isOk)
             .andExpect(jsonPath("$.id").value(1))
             .andExpect(jsonPath("$.name").value("Independent"))
     }
 
     @Test
+    fun `Should not add movie when add movie with empty name`() {
+
+        // Given
+        val jsonBody = """
+            {
+                "name": ""
+            }
+        """.trimIndent()
+
+        // Verify
+        mockMvc.perform(
+            post("/api/v1/movies")
+                .content(jsonBody)
+                .contentType(MediaType.APPLICATION_JSON)
+        )
+            .andExpect(status().isBadRequest)
+    }
+
+    @Test
     fun `Should return movie`() {
 
-        //Given
+        // Given
         val movie = Movie(1, "Independent")
 
-        //When
+        // When
         Mockito.`when`(movieService.findOne(1)).thenReturn(movie)
 
-        //Verify
+        // Verify
         mockMvc.perform(get("/api/v1/movies/1"))
-            .andExpect(status().is2xxSuccessful)
+            .andExpect(status().isOk)
             .andExpect(content().contentType("application/json"))
             .andExpect(jsonPath("$.id").value(1))
             .andExpect(jsonPath("$.name").value("Independent"))
     }
 
     @Test
+    fun `Should return empty list`() {
+
+        // Verify
+        mockMvc.perform(get("/api/v1/movies"))
+            .andExpect(status().isOk)
+            .andExpect(content().json("[]", true))
+    }
+
+    @Test
     fun `Should return list of movies`() {
 
-        //Given
+        // Given
         val movie1 = Movie(1, "Independent")
         val movie2 = Movie(2, "BelarusRWR")
         val movies = listOf(movie1, movie2)
 
-        //When
+        // When
         Mockito.`when`(movieService.findAll()).thenReturn(movies)
 
-        //Verify
+        // Verify
         mockMvc.perform(get("/api/v1/movies"))
-            .andExpect(status().is2xxSuccessful)
+            .andExpect(status().isOk)
             .andExpect(content().contentType("application/json"))
             .andExpect(jsonPath("$[0].id").value(1))
             .andExpect(jsonPath("$[0].name").value("Independent"))
@@ -113,5 +126,4 @@ class MovieControllerTests {
         mockMvc.perform(delete("/api/v1/movies/1"))
             .andExpect(status().isOk)
     }
-
 }

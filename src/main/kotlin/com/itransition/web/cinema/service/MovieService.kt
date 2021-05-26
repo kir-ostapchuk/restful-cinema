@@ -22,4 +22,7 @@ class MovieService(
 
     fun deleteById(id: Long) =
         repository.deleteById(id)
+
+    fun findByName(name: String): Movie =
+        repository.findByName(name)
 }

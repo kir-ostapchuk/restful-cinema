@@ -9,7 +9,6 @@ import org.springframework.stereotype.Repository
 
 @Repository
 interface MovieRepository : JpaRepository<Movie, Long> {
-    // TODO(Add finding by name using custom query)
 
     @Query("SELECT m FROM Movie m WHERE m.name = :name")
     fun findByName(@Param("name") name: String): Movie

@@ -4,6 +4,7 @@ import com.itransition.web.cinema.model.Movie
 import com.itransition.web.cinema.service.MovieService
 import org.junit.jupiter.api.Test
 import org.mockito.Mockito
+import org.mockito.kotlin.any
 import org.springframework.beans.factory.annotation.Autowired
 import org.springframework.boot.test.autoconfigure.web.servlet.AutoConfigureMockMvc
 import org.springframework.boot.test.context.SpringBootTest
@@ -44,28 +45,28 @@ class MovieControllerTests {
             .andExpect(content().json("[]", true)) // TODO(remove .json method usage)
     }
 
-//    @Test
-//    fun `Should add movie`() {
-//
-//        //Given
-//        val movie = Movie(1, "Independent")
-//        val jsonBody = """
-//            {
-//                "name": "Independent"
-//            }
-//        """.trimIndent()
-//
-//        //When
-//        Mockito.`when`(movieService.save(movie)).thenReturn(movie)
-//
-//        // Verify
-//        mockMvc.perform(post("/api/v1/movies")
-//            .content(jsonBody)
-//            .contentType(MediaType.APPLICATION_JSON))
-//            .andExpect(status().isOk)
-//            .andExpect(jsonPath("$.id").value(1))
-//            .andExpect(jsonPath("$.name").value("Independent"))
-//    }
+    @Test
+    fun `Should add movie`() {
+
+        //Given
+        val movie = Movie(1, "Independent")
+        val jsonBody = """
+            {
+                "name": "Independent"
+            }
+        """.trimIndent()
+
+        //When
+        Mockito.doReturn(movie).`when`(movieService).save(any())
+
+        // Verify
+        mockMvc.perform(post("/api/v1/movies")
+            .content(jsonBody)
+            .contentType(MediaType.APPLICATION_JSON))
+            .andExpect(status().isOk)
+            .andExpect(jsonPath("$.id").value(1))
+            .andExpect(jsonPath("$.name").value("Independent"))
+    }
 
     @Test
     fun `Should return movie`() {

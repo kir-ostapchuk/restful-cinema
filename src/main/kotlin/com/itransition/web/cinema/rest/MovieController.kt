@@ -27,7 +27,7 @@ class MovieController(
         service.findOne(id)
 
     @PostMapping
-    fun save(@Valid @RequestBody movie: Movie): Movie=
+    fun save(@Valid @RequestBody movie: Movie): Movie =
         service.save(movie)
 
     @DeleteMapping("/{id}")

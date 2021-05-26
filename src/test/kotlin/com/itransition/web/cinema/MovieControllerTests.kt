@@ -8,6 +8,7 @@ import org.springframework.beans.factory.annotation.Autowired
 import org.springframework.boot.test.autoconfigure.web.servlet.AutoConfigureMockMvc
 import org.springframework.boot.test.context.SpringBootTest
 import org.springframework.boot.test.mock.mockito.MockBean
+import org.springframework.http.MediaType
 import org.springframework.test.web.servlet.MockMvc
 import org.springframework.test.web.servlet.request.MockMvcRequestBuilders.delete
 import org.springframework.test.web.servlet.request.MockMvcRequestBuilders.get
@@ -25,6 +26,7 @@ class MovieControllerTests {
     //  4. add comments
     //  5. remove string-json
     //  6. add comparing json with
+    //  7. test all cases (non-valid name, resource does not exist)
     //  )
 
     @Autowired
@@ -57,8 +59,10 @@ class MovieControllerTests {
 //        Mockito.`when`(movieService.save(movie)).thenReturn(movie)
 //
 //        // Verify
-//        mockMvc.perform(post("/api/v1/movies").content(jsonBody))
-//            .andExpect(status().is2xxSuccessful)
+//        mockMvc.perform(post("/api/v1/movies")
+//            .content(jsonBody)
+//            .contentType(MediaType.APPLICATION_JSON))
+//            .andExpect(status().isOk)
 //            .andExpect(jsonPath("$.id").value(1))
 //            .andExpect(jsonPath("$.name").value("Independent"))
 //    }

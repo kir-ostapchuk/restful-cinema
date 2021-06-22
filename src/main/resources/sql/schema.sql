@@ -12,3 +12,9 @@ create table if not exists users
     first_name varchar(60) not null,
     age int not null
 );
+
+insert into movies (name)
+values ('Wild Horse');
+
+insert into users (login, password, first_name, age)
+values ('qjnzero', '123123123', 'Kirill', 19);

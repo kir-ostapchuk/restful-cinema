@@ -1,21 +1,17 @@
 package com.itransition.web.cinema.model
 
-import javax.persistence.Column
-import javax.persistence.Entity
-import javax.persistence.GeneratedValue
-import javax.persistence.GenerationType
-import javax.persistence.Id
-import javax.persistence.Table
 import javax.validation.constraints.NotBlank
+import org.springframework.data.annotation.Id
+import org.springframework.data.relational.core.mapping.Column
+import org.springframework.data.relational.core.mapping.Table
 
-@Entity
-@Table(name = "MOVIES")
+@Table("movies")
 class Movie(
 
     @Id
-    @GeneratedValue(strategy = GenerationType.IDENTITY)
     var id: Long? = null,
 
     @field:NotBlank(message = "Name is mandatory")
+    @Column("name")
     var name: String? = ""
 )

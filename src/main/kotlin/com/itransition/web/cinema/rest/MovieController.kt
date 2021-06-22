@@ -14,7 +14,7 @@ import org.springframework.web.bind.annotation.RestController
 
 @RestController
 @RequestMapping("/api/v1/movies")
-@CrossOrigin("http://localhost:3000")
+@CrossOrigin(origins = ["http://localhost:3030"])
 class MovieController(
     private val service: MovieService
 ) {

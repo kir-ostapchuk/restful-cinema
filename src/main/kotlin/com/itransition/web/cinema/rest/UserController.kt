@@ -2,6 +2,7 @@ package com.itransition.web.cinema.rest
 
 import com.itransition.web.cinema.model.User
 import com.itransition.web.cinema.service.UserService
+import io.swagger.v3.oas.annotations.tags.Tag
 import javax.validation.Valid
 import org.springframework.web.bind.annotation.CrossOrigin
 import org.springframework.web.bind.annotation.DeleteMapping
@@ -15,6 +16,7 @@ import org.springframework.web.bind.annotation.RestController
 @RestController
 @RequestMapping("api/v1/users")
 @CrossOrigin(origins = ["http://localhost:3030"])
+@Tag(name = "Users", description = "Available endpoints in User Controller")
 class UserController(
     private val service: UserService
 ) {
